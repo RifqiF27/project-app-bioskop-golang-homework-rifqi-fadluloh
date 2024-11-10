@@ -22,16 +22,34 @@
 									"});",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a5cc48f0cbd8be2abe8fb2b9a3ea46047a2406a7ed08734386f9599df0689570",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "4c3b4f6510e83d736dd696fd1a0f112a3695edfd56192b1514768117a4b1dda8",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -39,12 +57,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/info",
+							"raw": "{{base_url}}logout",
 							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"info"
+								"{{base_url}}logout"
 							]
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -63,7 +78,8 @@
 									"});",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -72,7 +88,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+							"raw": "{\n\t\"username\": \"admin\",\n    \"password\": \"admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -80,12 +96,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/info",
+							"raw": "{{base_url}}api/login",
 							"host": [
-								"{{base_url}}"
+								"{{base_url}}api"
 							],
 							"path": [
-								"info"
+								"login"
 							]
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -150,26 +166,31 @@
 									"    pm.response.to.have.status(200);",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3650f4179cb527c330cf7c39fb234ce36241cf399c488c985404fa06f485485f",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/info?id=1",
+							"raw": "{{base_url}}api/cinemas",
 							"host": [
-								"{{base_url}}"
+								"{{base_url}}api"
 							],
 							"path": [
-								"info"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "1"
-								}
+								"cinemas"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -187,26 +208,32 @@
 									"    pm.response.to.have.status(200);",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3650f4179cb527c330cf7c39fb234ce36241cf399c488c985404fa06f485485f",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/info?id=1",
+							"raw": "{{base_url}}api/cinemas/1",
 							"host": [
-								"{{base_url}}"
+								"{{base_url}}api"
 							],
 							"path": [
-								"info"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "1"
-								}
+								"cinemas",
+								"1"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -224,25 +251,42 @@
 									"    pm.response.to.have.status(200);",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3650f4179cb527c330cf7c39fb234ce36241cf399c488c985404fa06f485485f",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/info?id=1",
+							"raw": "{{base_url}}api/cinemas/1/seats?date=2024-11-15&time=15:00:00",
 							"host": [
-								"{{base_url}}"
+								"{{base_url}}api"
 							],
 							"path": [
-								"info"
+								"cinemas",
+								"1",
+								"seats"
 							],
 							"query": [
 								{
-									"key": "id",
-									"value": "1"
+									"key": "date",
+									"value": "2024-11-15"
+								},
+								{
+									"key": "time",
+									"value": "15:00:00"
 								}
 							]
 						},
