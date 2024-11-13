@@ -33,7 +33,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "a5cc48f0cbd8be2abe8fb2b9a3ea46047a2406a7ed08734386f9599df0689570",
+									"value": "f2c1b4a5d6136497395d7d5071e8df0363c1e04f840b5a6310e165c2be99b632",
 									"type": "string"
 								}
 							]
@@ -57,9 +57,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}logout",
+							"raw": "{{base_url}}api/logout",
 							"host": [
-								"{{base_url}}logout"
+								"{{base_url}}api"
+							],
+							"path": [
+								"logout"
 							]
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -88,7 +91,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+							"raw": "{\n\t\"username\": \"cust\",\n    \"password\": \"cust\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -130,7 +133,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"admin\",\n    \"password\": \"admin\",\n    \"email\": \"admin1@mail.com\"\n}",
+							"raw": "{\n\t\"username\": \"cust\",\n    \"password\": \"123\",\n    \"email\": \"cust@mail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -177,7 +180,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "3650f4179cb527c330cf7c39fb234ce36241cf399c488c985404fa06f485485f",
+									"value": "f2c1b4a5d6136497395d7d5071e8df0363c1e04f840b5a6310e165c2be99b632",
 									"type": "string"
 								}
 							]
@@ -191,6 +194,152 @@
 							],
 							"path": [
 								"cinemas"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "f2c1b4a5d6136497395d7d5071e8df0363c1e04f840b5a6310e165c2be99b632",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}api/cinemas/payment-methods",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"cinemas",
+								"payment-methods"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Post Booking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "f2c1b4a5d6136497395d7d5071e8df0363c1e04f840b5a6310e165c2be99b632",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cinemaId\": 3,\r\n  \"seatId\": 3,\r\n  \"date\": \"2024-11-15\",\r\n  \"time\": \"18:00\",\r\n  \"paymentMethod\": \"credit_card\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}api/cinemas/booking",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"cinemas",
+								"booking"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Post Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3650f4179cb527c330cf7c39fb234ce36241cf399c488c985404fa06f485485f",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cinemaId\": 1,\r\n  \"seatId\": 1,\r\n  \"date\": \"2024-11-15\",\r\n  \"time\": \"18:00\",\r\n  \"paymentMethod\": \"credit_card\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}api/booking",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"booking"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -219,7 +368,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "3650f4179cb527c330cf7c39fb234ce36241cf399c488c985404fa06f485485f",
+									"value": "f2c1b4a5d6136497395d7d5071e8df0363c1e04f840b5a6310e165c2be99b632",
 									"type": "string"
 								}
 							]
@@ -262,7 +411,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "3650f4179cb527c330cf7c39fb234ce36241cf399c488c985404fa06f485485f",
+									"value": "f2c1b4a5d6136497395d7d5071e8df0363c1e04f840b5a6310e165c2be99b632",
 									"type": "string"
 								}
 							]
@@ -270,7 +419,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}api/cinemas/1/seats?date=2024-11-15&time=15:00:00",
+							"raw": "{{base_url}}api/cinemas/1/seats?date=2024-11-14&time=10:00:00",
 							"host": [
 								"{{base_url}}api"
 							],
@@ -282,11 +431,11 @@
 							"query": [
 								{
 									"key": "date",
-									"value": "2024-11-15"
+									"value": "2024-11-14"
 								},
 								{
 									"key": "time",
-									"value": "15:00:00"
+									"value": "10:00:00"
 								}
 							]
 						},

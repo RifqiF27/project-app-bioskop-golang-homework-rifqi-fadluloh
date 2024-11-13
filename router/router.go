@@ -23,32 +23,37 @@ func NewRouter() http.Handler {
 	cinemaRepo := repository.NewCinemaRepositoryDb(db)
 	srvCnms := service.NewCinemaService(cinemaRepo)
 
+	bookingRepo := repository.NewBookingRepository(db)
+	srvBooking := service.NewBookingService(bookingRepo, userRepo)
+
+	paymentRepo := repository.NewPaymentRepository(db)
+	srvPay := service.NewPaymentService(paymentRepo)
+
 	h := handler.NewAuthHandler(srv)
 	c := handler.NewCinemaHandler(srvCnms)
+	b := handler.NewBookingHandler(srvBooking)
+	p := handler.NewPaymentHandler(srvPay)
 
 	r.Use(middleware.Logger)
-
-	// Serve static files
-	// fileServer := http.FileServer(http.Dir("./static"))
-	// r.Handle("/static/*", http.StripPrefix("/static", fileServer))
 
 	r.Group(func(r chi.Router) {
 		r.Route("/api", func(r chi.Router) {
 			r.Post("/register", h.RegisterHandler)
 			r.Post("/login", h.LoginHandler)
-			// r.Post("/logout", h.LogoutHandler)
+			r.Post("/logout", h.LogoutHandler)
 
 		})
 	})
 
 	r.Group(func(r chi.Router) {
 		r.Route("/api/cinemas", func(r chi.Router) {
-			r.Use(middleware_auth.AuthMiddleware(srv)) // Apply the AuthMiddleware
+			r.Use(middleware_auth.AuthMiddleware(srv))
 			r.Get("/", c.GetAllCinemas)
 			r.Get("/{cinemaId}", c.GetCinemaByID)
 			r.Get("/{cinemaId}/seats", c.GetSeats)
-
-			r.Post("/logout", h.LogoutHandler)
+			r.Post("/booking", b.BookSeat)
+			r.Get("/payment-methods", p.GetPaymentMethods)
+			r.Post("/pay", p.ProcessPayment)
 
 		})
 	})

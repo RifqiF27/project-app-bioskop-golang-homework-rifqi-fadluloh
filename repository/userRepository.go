@@ -56,28 +56,28 @@ func (repo *AuthRepositoryDb) GetSessionByToken(token string) (*model.Session, e
 }
 
 func (repo *AuthRepositoryDb) DeleteSession(token string) error {
-    query := "DELETE FROM sessions WHERE token=$1"
-    res, err := repo.DB.Exec(query, token)
-    if err != nil {
-        fmt.Println("Error executing delete:", err)
-        return err
-    }
+	query := "DELETE FROM sessions WHERE token=$1"
+	res, err := repo.DB.Exec(query, token)
+	if err != nil {
+		fmt.Println("Error executing delete:", err)
+		return err
+	}
 
-    rowsAffected, _ := res.RowsAffected()
-    fmt.Println("Rows affected by delete:", rowsAffected) // Debugging log
-    if rowsAffected == 0 {
-        fmt.Println("No session found with this token.") // If no rows were affected, the token might not exist.
-    }
-    
-    return nil
+	rowsAffected, _ := res.RowsAffected()
+	fmt.Println("Rows affected by delete:", rowsAffected) 
+	if rowsAffected == 0 {
+		fmt.Println("No session found with this token.") 
+	}
+
+	return nil
 }
 
 func (repo *AuthRepositoryDb) tokenExists(token string) (bool, error) {
-    query := `SELECT COUNT(*) FROM sessions WHERE token = $1`
-    var count int
-    err := repo.DB.QueryRow(query, token).Scan(&count)
-    if err != nil {
-        return false, err
-    }
-    return count > 0, nil
+	query := `SELECT COUNT(*) FROM sessions WHERE token = $1`
+	var count int
+	err := repo.DB.QueryRow(query, token).Scan(&count)
+	if err != nil {
+		return false, err
+	}
+	return count > 0, nil
 }
